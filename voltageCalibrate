@@ -1,0 +1,16 @@
+#include "EmonLib.h"
+#define VOLT_CAL 611.8
+
+EnergyMonitor emon1;
+
+void setup() {
+Serial.begin(9600);
+emon1.voltage(A0,VOLT_CAL,1.7);
+}
+
+void loop() {
+  emon1.calcVI(20,2000);
+  float supplyVoltage = emon1.Vrms;
+Serial.println(supplyVoltage);
+delay(100);
+}
